@@ -1,0 +1,65 @@
+/*
+ graph 에서의 BFS (너비우선검색) 를 이용한 노드 순
+*/
+//G : graph, s : root
+BFS(G,s)
+  make Queue -> Q
+  Enqueue(Q,s) ;
+  while Q is not empty do
+    u <- Dequeue(Q)
+    for each v adjacent to u do
+        if v is not visited then
+            mark v as visited
+            enqueue(Q,v)
+         end
+    end
+  end
+
+
+* 추가적으로 BFS 를 하면서 각 노드에 대한 최단 경로를 구할 수 있다.
+
+입력: 방향 혹은 무방향 그래프 G= (V, E)  : V: Vertex(node,) E: Edge, s : 출발노드
+출력 : 모든 V 에 대해서
+   d[v] = s 로부터 v 까지 최단 경로의 길이 (Edge 의 수)
+   p[v] = 최단경로상에서 v 의 직전 노드
+
+BFS(G,s)
+  make Queue -> Q
+  d[s] = 0
+  p[s] <- null
+  Enqueue(Q,s) ;
+  while Q is not empty do
+    u <- Dequeue(Q)
+    for each v adjacent to u do
+        if v is not visited then
+            mark v as visited
+            d[v] = d[u] + 1  /* distance to v */
+            p[v] = u   /* predecessor of v */
+            enqueue(Q,v)
+         end
+    end
+  end
+
+
+
+* 최단 경로의 출력
+
+PrintPath(G,s,v) // S에서 v 까지 가는 최단 경로 출력
+    if s == v  then
+        print s
+    else if p[v] = null
+        print "no path from s to v"
+    else
+        PrintPath(G, s, p(v)) ;
+        print v
+
+ --> 재귀적으로 해석하면 s에서 v 까지 가는 최단 경로는 s에서 p(v) 까지 가는 경로 후에 v 를 추가하는 것.
+
+
+* 추가적으로 disconnected 거나 방향 그래프라면 BFS 에 의해서 모든 노드가 뱡문 안될 수 있음.
+  이러한 경우는 BFS 를 반복하여 모든 노드를 방문해야 함.
+
+  BFS-ALL(G)
+    while there exists unvisited node v
+        BFS(G,v)
+
