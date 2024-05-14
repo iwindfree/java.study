@@ -1,0 +1,29 @@
+/*
+깊이 우선 탐색
+        1
+       /  \
+      2    3 - 7
+     / \    \
+    4   5     8
+        /
+       6
+
+ 1. 출발점 (1) 에서 시작
+ 2. 현재 노드를 visited 로 마크하고 인접한 노드들 중 unvisted node 가 존재하면 그 곳으로 이동한다.
+ 3. 2 를 반복한다.
+ 4. 인접노드가 존재하지 않으면(leaf node) 직전 노드로 돌아가서 직전 노드에서 unvisited 노드가 존재하면 그곳으로 이동
+ 5. 다시 2를 반
+ 6. 시작노드로 돌아오고 더 이상 갈곳이 없으면 종
+
+- level order traverse : bfs
+- Inorder traverse, post order, preorder : dfs
+
+DFS(G,v)
+    visited[v] = yes
+    for each node x adjecent to v do
+        if visited[x] = no then
+            DFS(G,x);fffff
+        end
+    end
+
+
